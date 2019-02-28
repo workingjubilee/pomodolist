@@ -50,12 +50,18 @@ const App = () => {
     setTodos(newTodos);
   };
 
+  const clearCompleted = () => {
+    const newTodos = [...todos].filter(todo => todo.isCompleted === false);
+    setTodos(newTodos);
+  };
+
   return (
     <div className="Another tiresome div">
       {todos.map((todo, index) =>
         <Todo key={index} index={index} todo={todo} completeTodo={completeTodo} />
         )
       }
+      <button onClick={clearCompleted}>Clear Completed</button>
       <TodoForm addTodo={addTodo} />
     </div>
 
