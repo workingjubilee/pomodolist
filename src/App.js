@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
 
-const Todo = ({ todo, index }) => {
-  return <h1>{todo.text}</h1>
+const Todo = ({ todo, index, completeTodo }) => {
+  return (
+    <div className="todo">
+      <h3 style={{textDecoration: todo.isCompleted ? 'line-through' : '' }}>{todo.text}</h3>
+      <button onClick={() => completeTodo(index)}>Done?</button>
+    </div>
+  )
 }
 
 const TodoForm = ({addTodo}) => {
@@ -37,12 +42,18 @@ const App = () => {
   const addTodo = text => {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
-  }
+  };
+
+  const completeTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = !newTodos[index].isCompleted
+    setTodos(newTodos);
+  };
 
   return (
     <div className="Another tiresome div">
       {todos.map((todo, index) =>
-        <Todo key={index} index={index} todo={todo} />
+        <Todo key={index} index={index} todo={todo} completeTodo={completeTodo} />
         )
       }
       <TodoForm addTodo={addTodo} />
