@@ -22,3 +22,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
